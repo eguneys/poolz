@@ -1,0 +1,23 @@
+{
+  "name": "poolz",
+  "version": "1.0.0",
+  "description": "Pool objects with this simple library",
+  "keywords": [
+    "utility",
+    "objects",
+    "pool"
+  ],
+  "main": "pool.js",
+  "scripts": {
+    "compile": "babel src --out-dir ./",
+    "prepublish": "yarn run compile"
+  },
+  "repository": "https://github.com/eguneys/poolz",
+  "author": "Emre Guneyler <eguneys@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0"
+  }
+}
