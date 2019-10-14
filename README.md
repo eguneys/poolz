@@ -1,12 +1,12 @@
-# poolz
+# poolf
 Pool objects with this simple library
 
-`yarn install poolz`
+`yarn install poolf`
 
 ### Usage
 
 ```
-import Pool from 'poolz';
+import Pool from 'poolf';
 
 
 let myPool = new Pool(() => new MyObject());
@@ -47,6 +47,10 @@ Optional constructor options are:
 `pool.releaseAll()` releases all items.
 
 `pool.releaseIf(p, onRelease)` releases all items where the given predicate `p` is true. Predicate `p` is called with each item and returns a boolean. `onRelease` is called with the released items as argument.
+
+`pool.reduce(f)` reduce alive items.
+
+`pool.map(f)` maps each alive item.
 
 `pool.each(f)` calls function f with each alive item passed as argument.
 

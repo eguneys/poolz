@@ -4,7 +4,9 @@ export default function Pool(makeItem, opts) {
     warnLeak: 400
   });
 
-  opts = { ...defaults(), ...opts };
+  opts = { ...defaults(),
+    ...opts
+  };
 
   const makeId = (() => {
     let n = 0;
@@ -17,6 +19,7 @@ export default function Pool(makeItem, opts) {
   this.name = () => opts.name;
 
   this.alives = () => alive.length;
+
   this.total = () => dead.length + alive.length;
 
   this.warnLeak = () => opts.warnLeak;
@@ -27,19 +30,21 @@ export default function Pool(makeItem, opts) {
 
   this.acquire = (onInit = () => {}) => {
     let item;
+
     if (this.total() > this.warnLeak()) {
       console.warn(`possible pool leak at ${this.name()}.`);
       this.releaseLast();
     }
+
     if (dead.length > 0) {
       item = dead.pop();
     } else {
       item = makeItem(makeId());
     }
+
     onInit(item);
     alive.push(item);
     return item;
-
   };
 
   this.acquireLimit = (onInit, limit) => {
@@ -48,11 +53,11 @@ export default function Pool(makeItem, opts) {
     }
   };
 
-  this.release = (item) => {
+  this.release = item => {
     this.releaseIndex(alive.indexOf(item));
   };
 
-  this.releaseIndex = (i) => {
+  this.releaseIndex = i => {
     if (i > -1) {
       dead.push(alive.splice(i, 1)[0]);
     }
@@ -70,7 +75,6 @@ export default function Pool(makeItem, opts) {
   this.releaseIf = (p, onRelease = () => {}) => {
     let release = [],
         keep = [];
-
     alive.forEach(_ => {
       if (p(_)) {
         onRelease(_);
@@ -79,21 +83,17 @@ export default function Pool(makeItem, opts) {
         keep.push(_);
       }
     });
-
     alive = keep;
     dead = [...release, ...dead];
   };
 
-  this.reduce = (f, i) => alive.reduce(f, i);
+  this.map = f => alive.map(f);
 
-  this.map = (f) => alive.map(f);
-
-  this.each = (f) => {
+  this.each = f => {
     alive.forEach(f);
   };
 
   this.find = p => {
     return alive.find(p);
   };
-
 }
