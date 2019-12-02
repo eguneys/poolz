@@ -31,27 +31,29 @@ Optional constructor options are:
   }
 ```
 
-`pool.alives()` returns alive object count.
+`pool.alives()` return alive object count.
 
-`pool.total()` returns total object count alive and dead.
+`pool.total()` return total object count alive and dead.
 
-`pool.toString()` returns a pretty formatted string
+`pool.toString()` return a pretty formatted string
 
-`pool.acquire(onInit)` acquires a new item from the pool, reusing a dead one or creating a new one. Takes an optional `onInit` function that is called with the newly acquired item.
+`pool.acquire(onInit)` acquire a new item from the pool, reusing a dead one or creating a new one. Takes an optional `onInit` function that is called with the newly acquired item.
 
-`pool.acquireLimit(onInit, limit)` acquires `limit` number of items at once.
+`pool.acquireLimit(onInit, limit)` acquire `limit` number of items at once.
 
-`pool.release(item)` releases an item.
+`pool.release(item)` release an item.
 
 
-`pool.releaseAll()` releases all items.
+`pool.releaseAll()` release all items.
 
-`pool.releaseIf(p, onRelease)` releases all items where the given predicate `p` is true. Predicate `p` is called with each item and returns a boolean. `onRelease` is called with the released items as argument.
+`pool.releaseIf(p, onRelease)` release all items where the given predicate `p` is true. Predicate `p` is called with each item and returns a boolean. `onRelease` is called with the released items as argument.
 
 `pool.reduce(f)` reduce alive items.
 
-`pool.map(f)` maps each alive item.
+`pool.map(f)` map each alive item.
 
-`pool.each(f)` calls function f with each alive item passed as argument.
+`pool.flatMap(f)` flatMap each alive item.
 
-`pool.find(p)` finds an item where predicate `p` is true.
+`pool.each(f)` call function f with each alive item passed as argument.
+
+`pool.find(p)` find an item where predicate `p` is true.

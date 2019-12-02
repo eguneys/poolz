@@ -87,6 +87,8 @@ export default function Pool(makeItem, opts) {
     dead = [...release, ...dead];
   };
 
+  this.reduce = (f, i) => alive.reduce(f, i);
+
   this.map = f => alive.map(f);
 
   this.each = f => {
