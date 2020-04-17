@@ -91,6 +91,8 @@ export default function Pool(makeItem, opts) {
 
   this.map = f => alive.map(f);
 
+  this.flatMap = f => alive.flatMap(f);
+
   this.each = f => {
     alive.forEach(f);
   };

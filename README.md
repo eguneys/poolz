@@ -57,3 +57,5 @@ Optional constructor options are:
 `pool.each(f)` call function f with each alive item passed as argument.
 
 `pool.find(p)` find an item where predicate `p` is true.
+
+`pool.filter(p)` filter items with predicate `p`.

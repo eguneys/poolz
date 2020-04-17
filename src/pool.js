@@ -98,4 +98,8 @@ export default function Pool(makeItem, opts) {
     return alive.find(p);
   };
 
+  this.filter = p => {
+    return alive.filter(p);
+  };
+
 }
